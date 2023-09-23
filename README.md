@@ -1,7 +1,7 @@
 # yowgah
-Our yoga app &lt;3 ;)
-Which we r developing 4 technovah :)
 
+Our yoga app &lt;3 ;)
+Which we r developing 4 technovah :) test
 
 ## Starting the Front End
 
