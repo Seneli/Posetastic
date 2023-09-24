@@ -38,7 +38,12 @@ const classifyPose = (pose: any) => {
     const leftKneeAngle = calculateAngle(pose.leftHip, pose.leftKnee, pose.leftAnkle);
     const rightKneeAngle = calculateAngle(pose.rightHip, pose.rightKnee, pose.rightAnkle);
     
-    console.log(leftElbowAngle);
+    console.log("LEFT ELBOW", leftElbowAngle);
+    console.log("right ELBOW", rightElbowAngle);
+    // console.log("LEFT SHOULDER", leftShoulderAngle);
+    // console.log("right SHOULDER", rightShoulderAngle);
+    console.log("LEFT KNEE", leftKneeAngle);
+    console.log("right KNEE", rightKneeAngle);
 
     if (leftElbowAngle === -1 || rightElbowAngle === -1 || leftShoulderAngle === -1 || rightShoulderAngle === -1){
         return "Pose Unidentifiable: Make sure we can see your joints!"
@@ -46,16 +51,15 @@ const classifyPose = (pose: any) => {
 
     // Identify the pose
     // Check if the both arms are straight.
-    if ((150 < leftElbowAngle && leftElbowAngle < 200) && (150 < rightElbowAngle && rightElbowAngle < 200)){
-        if ((80 < leftShoulderAngle && leftShoulderAngle < 110) && (80 < rightShoulderAngle && rightShoulderAngle < 110)) {
-            // Check if warrior 2 pose 
-            // CHECK IF LEGS R STRAIGHT
-            if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
-                // Check if the other leg is bended at the required angle.
-                if ((leftKneeAngle > 90 && leftKneeAngle < 120) || (rightKneeAngle > 90 && rightKneeAngle < 120)){
-                        // Specify the label of the pose that is Warrior II pose.
-                        return 'Warrior II Pose';
-                }
+
+    if (150 < leftElbowAngle && leftElbowAngle < 200 && 150 < rightElbowAngle && rightElbowAngle < 200){
+        // Check if warrior 2 pose 
+        // CHECK IF LEGS R STRAIGHT
+        if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
+            // Check if the other leg is bended at the required angle.
+            if ((leftKneeAngle > 90 && leftKneeAngle < 150) || (rightKneeAngle > 90 && rightKneeAngle < 150)){
+                    // Specify the label of the pose that is Warrior II pose.
+                    return 'Warrior II' ;
             }
 
             // Check if T pose
@@ -68,6 +72,10 @@ const classifyPose = (pose: any) => {
     //Check if one leg is straight and one leg is bent (tree pose)
     if (((150 < leftKneeAngle && leftKneeAngle < 200) && (25 < rightKneeAngle && rightKneeAngle < 90)) || ((150 < rightKneeAngle && rightKneeAngle < 200) && (25 < leftKneeAngle && leftKneeAngle < 90))){
         return 'Tree Pose';               
+    }
+
+    if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
+        return "legs str8";
     }
 
     return 'Unknown Pose';

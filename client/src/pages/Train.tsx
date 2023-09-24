@@ -1,10 +1,11 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import styled from 'styled-components';
-import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+import { ReactP5Wrapper } from "react-p5-wrapper";
 import {PageTemplate} from "../components";
 import {ColorScheme} from "../types/enums";
 import ml5 from "ml5";
-import {classifyPose, calculateAngle} from "../computation/poseDetectior";
+import {classifyPose} from "../computation/poseDetectior";
+import { useNavigate } from 'react-router-dom';
 
 declare const p5: any
 
@@ -27,7 +28,6 @@ function setup(p5:any) {
     // with an array every time new poses are detected
     poseNet.on("pose", function(results: any[]) {
       poses = results;
-      // console.log("poses", poses);
     });
     // Hide the video element, and just show the canvas
     video.hide();
@@ -41,10 +41,6 @@ function draw(p5:any) {
     // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints(p5);
     drawSkeleton(p5);
-
-    if (poses[0]){
-      classifyPose(poses[0]?.pose);
-    }
   };
 }
 
@@ -87,15 +83,81 @@ function sketch(p5:any) {
 }
 
 const Train = () => {
-  const [pose, setPose] = useState<string>('Unknown Pose')
+  const desiredPoses = ["legs str8", "Tree Pose", 'Warrior II'];
+  const [poseNum, setPoseNum] = useState<number>(0);
+  const [pose, setPose] = useState<string>('Unknown Pose');
+  const [count, setCount] = useState(0);
+  const [done, setDone] = useState<boolean>(true);
+
+  let navigate = useNavigate();
+  
+    useEffect(() => {
+        //Implementing the setInterval method
+        const interval = setInterval(() => {
+            if (poses[0]){
+              const currentPose = classifyPose(poses[0]?.pose);
+              if (currentPose === desiredPoses[poseNum]){
+                setCount(count + 1);
+                if (count === 6 && poseNum === desiredPoses.length - 2 ){
+                  setDone(true)
+                } else if (count === 6) {
+                  setPoseNum(poseNum + 1);
+                }
+              } else {
+                setCount(0);
+              }
+
+              setPose(currentPose);
+            }
+        }, 1000);
+  
+        //Clearing the interval
+        return () => clearInterval(interval);
+    }, [count]);
 
   return(
     <PageTemplate colorScheme={ColorScheme.Pink}>
-      <ReactP5Wrapper sketch={sketch}></ReactP5Wrapper>
-      <p>{pose}</p>
-    </PageTemplate>
+      {done ? 
+        <>
+          <Title>🎉 Congratulations! 🎉</Title>
+          <Text><b>You successfully completed your poses! </b></Text> 
+          <Button onClick={() => navigate('/')}>Return to the Home Page</Button>
+        </>
+      : 
+        <>
+          <ReactP5Wrapper sketch={sketch}></ReactP5Wrapper>
+            <Text><b>DESIRED POSE:</b> {desiredPoses[poseNum]}</Text>
+            <Text><b>DETECTED POSE:</b> {pose}</Text>
+            <Text><b>Counter:</b> {count}</Text>
+        </>
+      }
+  </PageTemplate>
   )
 };
 
+const Title = styled.h1`
+    font-size: 50px;
+`;
+
+const Text = styled.p`
+  font-size: 20px;
+  padding: 20px 80px;
+`;
+
+const Button = styled.button`
+    font-size: 20px;
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.technovaBlueDark};
+    border: 3px solid ${(props) => props.theme.colors.technovaBlue};
+    border-radius: 25px;
+    background-color: ${(props) => props.theme.colors.technovaBlueLight};
+    padding: 20px 80px;
+
+    transition: ease-in 0.3s;
+    &:hover {
+        transform: translate(-3px, -3px);
+        filter: drop-shadow(3px 3px 2px ${(props) => props.theme.colors.dropShadow});
+    }
+`;
 
 export default Train;
