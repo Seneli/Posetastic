@@ -65,6 +65,8 @@ const CenterDiv = styled.div<{ background: string; border: string }>`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
 `;
 
 

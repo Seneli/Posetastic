@@ -26,10 +26,16 @@ const Image = styled.img`
 const Title = styled.h1`
     font-size: 80px;
     font-family: 'Urbanist', sans-serif;
+    margin-bottom: 30px;
+
+    @media (max-width: 1000px) {
+        font-size: 60px;
+    }
 `;
 
 const Text = styled.p`
-    padding-bottom: 40px;
+    margin: 0;
+    padding-bottom: 50px;
     font-size: 35px;
     font-family: 'Quicksand', sans-serif;
 `;
