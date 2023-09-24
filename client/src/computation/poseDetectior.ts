@@ -1,10 +1,3 @@
-/**
- * 
- * @param landmark1 The first landmark containing the x,y coordinates, and confidence score
- * @param landmark2 The second landmark containing the x,y coordinates, and confidence score
- * @param landmark3 The third landmark containing the x,y coordinates, and confidence score
- * @returns The calculated angle between the three landmarks.
- */
 const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
     if (landmark1.confidence < 0.2 || landmark2.confidence < 0.2 || landmark3.confidence < 0.2) {
         return -1;
@@ -64,114 +57,6 @@ const classifyPose = (pose: any) => {
                         return 'Warrior II Pose';
                 }
             }
-<<<<<<< HEAD
-        }
-                
-    }
-
-    //Check if one leg is straight and one leg is bent (tree pose)
-    if (((150 < leftKneeAngle && leftKneeAngle < 200) && (25 < rightKneeAngle && rightKneeAngle < 90)) || ((150 < rightKneeAngle && rightKneeAngle < 200) && (25 < leftKneeAngle && leftKneeAngle < 90))){
-        return 'Tree Pose';               
-    }
-
-    return 'Unknown Pose';
-
-    //     # Check if shoulders are at the required angle.
-    //     if (80 < left_shoulder_angle < 110) and (80 < right_shoulder_angle < 110):
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if it is the warrior II pose.
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if one leg is straight.
-    //         if (150 < left_knee_angle < 200) or (150 < right_knee_angle < 200):
-    //             # Check if the other leg is bended at the required angle.
-    //             if (left_knee_angle > 90 and left_knee_angle < 120) or (right_knee_angle > 90 and right_knee_angle < 120):
-    //                 # Specify the label of the pose that is Warrior II pose.
-    //                 label = 'Warrior II Pose' 
-                        
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if it is the T pose.
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if both legs are straight
-    //         if left_knee_angle > 160 and left_knee_angle < 195 and right_knee_angle > 160 and right_knee_angle < 195:
-    //             label = 'T Pose'
-
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if it is the tree pose.
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if one leg is straight
-    // if ((150 < left_knee_angle < 200) and (25 < right_knee_angle < 90)) or ((150 < right_knee_angle < 200) and (25 < left_knee_angle < 90)):
-    //     label = 'Tree Pose'
-    
-}
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if it is the warrior II pose or the T pose:
-    // #   both arms should be straight and shoulders should be at the specific angle.
-    // #----------------------------------------------------------------------------------------------------------------
-    
-    // # Check if the both arms are straight.
-    // if (150 < left_elbow_angle < 200) and (150 < right_elbow_angle < 200):
-
-    //     # Check if shoulders are at the required angle.
-    //     if (80 < left_shoulder_angle < 110) and (80 < right_shoulder_angle < 110):
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if it is the warrior II pose.
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if one leg is straight.
-    //         if (150 < left_knee_angle < 200) or (150 < right_knee_angle < 200):
-    //             # Check if the other leg is bended at the required angle.
-    //             if (left_knee_angle > 90 and left_knee_angle < 120) or (right_knee_angle > 90 and right_knee_angle < 120):
-    //                 # Specify the label of the pose that is Warrior II pose.
-    //                 label = 'Warrior II Pose' 
-                        
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if it is the T pose.
-    //         #--------------------------------------------------------------------------------------------------------
-    //         # Check if both legs are straight
-    //         if left_knee_angle > 160 and left_knee_angle < 195 and right_knee_angle > 160 and right_knee_angle < 195:
-    //             label = 'T Pose'
-
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if it is the tree pose.
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if one leg is straight
-    // if ((150 < left_knee_angle < 200) and (25 < right_knee_angle < 90)) or ((150 < right_knee_angle < 200) and (25 < left_knee_angle < 90)):
-    //     label = 'Tree Pose'
-    
-    // #----------------------------------------------------------------------------------------------------------------
-    // # Check if the pose is classified successfully
-    // if label != 'Unknown Pose':
-        
-    //     # Update the color (to green) with which the label will be written on the image.
-    //     color = (0,0,255)  
-    
-    // # Write the label on the output image. 
-    // cv2.putText(output_image, label, (10, 30),cv2.FONT_HERSHEY_PLAIN, 2, color, 5)
-    
-    // # TODO: delete these
-    // print(label)
-    // print(left_elbow_angle, right_elbow_angle, left_shoulder_angle, right_shoulder_angle, left_knee_angle, right_knee_angle)
-
-    // # Check if the resultant image is specified to be displayed.
-    // if display:
-    //     # Display the resultant image.
-    //     plt.figure(figsize=[10,10])
-    //     plt.imshow(output_image[:,:,::-1]);plt.title("Output Image");plt.axis('off');
-        
-    // else:
-    //     # Return the output image and the classified label.
-    //     return output_image, label
-
-
-
-
-
-
-// image = cv2.imread('./test-cases/tree-pose4.jpg')
-// output_image, landmarks = detectPose(image, pose, display=False)
-// if landmarks:
-//     classifyPose(landmarks, output_image, display=True) 
-=======
->>>>>>> 69d3e948b28ad996fb9862e168f188efcc2b6bad
 
             // Check if T pose
             if ((160 < leftKneeAngle && leftKneeAngle < 195) && (160 < rightKneeAngle && rightKneeAngle < 195)) {
@@ -179,5 +64,13 @@ const classifyPose = (pose: any) => {
             }
         }                
     }
+    
+    //Check if one leg is straight and one leg is bent (tree pose)
+    if (((150 < leftKneeAngle && leftKneeAngle < 200) && (25 < rightKneeAngle && rightKneeAngle < 90)) || ((150 < rightKneeAngle && rightKneeAngle < 200) && (25 < leftKneeAngle && leftKneeAngle < 90))){
+        return 'Tree Pose';               
+    }
+
+    return 'Unknown Pose';
+}
 
 export {classifyPose, calculateAngle};
