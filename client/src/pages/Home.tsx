@@ -9,7 +9,7 @@ const Home = () => {
     
     return (
         <PageTemplate colorScheme={ColorScheme.Green}>
-           <img className = "yoga" src={star} alt="yoga"></img>
+           <Image src={yoga} alt="yoga"></Image>
             <Title>Welcome to Posetastic!</Title>
             <Text>Click the following buttons to learn more</Text>
             <ButtonFlex>
@@ -19,6 +19,9 @@ const Home = () => {
         </PageTemplate>
     )
 };
+const Image = styled.img`
+    padding-top: 30px`
+;
 
 const Title = styled.h1`
     font-size: 70px;
