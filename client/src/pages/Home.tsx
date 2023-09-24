@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import {PageTemplate} from "../components";
 import { useNavigate } from 'react-router-dom'
 import {ColorScheme} from "../types/enums";
+import star from "../assets/star.svg";
 
 const Home = () => {
     let navigate = useNavigate();
     
     return (
         <PageTemplate colorScheme={ColorScheme.Green}>
+           <img className = "star" src={star} alt="star"></img>
             <Title>Welcome to Posetastic!</Title>
-
             <Text>Click the following buttons to learn more</Text>
             <ButtonFlex>
                 <Button onClick={() => navigate('/train')}>Train with us!</Button>
