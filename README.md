@@ -3,6 +3,8 @@
 Our yoga app &lt;3 ;)
 Which we r developing 4 technovah :) test
 
+Please reference our devpost for more details : https://devpost.com/software/posetastic
+
 ## Starting the Front End
 
 In the `/client` directory, run the following commands to start a local server.
