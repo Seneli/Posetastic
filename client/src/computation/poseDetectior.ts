@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param landmark1 The first landmark containing the x,y coordinates, and confidence score
+ * @param landmark2 The second landmark containing the x,y coordinates, and confidence score
+ * @param landmark3 The third landmark containing the x,y coordinates, and confidence score
+ * @returns The calculated angle between the three landmarks.
+ */
 const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
     if (landmark1.confidence < 0.2 || landmark2.confidence < 0.2 || landmark3.confidence < 0.2) {
         return -1;
@@ -23,15 +30,10 @@ const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
 
 /**
  * 
- * @param landmarks: A list of detected landmarks of the person whose pose needs to be classified.
- * @param output_image: A image of the person with the detected pose landmarks drawn.
- * @param display: A boolean value that is if set to true the function displays the resultant image with the pose label 
- *                 written on it and returns nothing. 
- * @returns {
-*        outputImage: The image with the detected pose landmarks drawn and pose label written.
-*        label: The classified pose label of the person in the output_image.
-*  }
- */
+ * @param pose 
+ * @returns The classified pose label of the person in the output_image.
+*/
+
 const classifyPose = (pose: any) => {
     // Calculate the required angles 
     // console.log(pose);
@@ -40,7 +42,7 @@ const classifyPose = (pose: any) => {
     const rightElbowAngle = calculateAngle(pose.rightShoulder, pose.rightElbow, pose.rightWrist);
     const leftShoulderAngle = calculateAngle(pose.leftElbow, pose.leftShoulder, pose.leftHip);
     const rightShoulderAngle = calculateAngle(pose.rightHip, pose.rightShoulder, pose.rightElbow);
-    const leftKneeAngle = calculateAngle(pose.leftElbow, pose.leftKnee, pose.leftAnkle);
+    const leftKneeAngle = calculateAngle(pose.leftHip, pose.leftKnee, pose.leftAnkle);
     const rightKneeAngle = calculateAngle(pose.rightHip, pose.rightKnee, pose.rightAnkle);
     
     console.log(leftElbowAngle);
@@ -51,15 +53,18 @@ const classifyPose = (pose: any) => {
 
     // Identify the pose
     // Check if the both arms are straight.
-    if (150 < leftElbowAngle && leftElbowAngle < 200 && 150 < rightElbowAngle && rightElbowAngle < 200){
-        // Check if warrior 2 pose 
-        // CHECK IF LEGS R STRAIGHT
-        if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
-            // Check if the other leg is bended at the required angle.
-            if ((leftKneeAngle > 90 && leftKneeAngle < 120) || (rightKneeAngle > 90 && rightKneeAngle < 120)){
-                    // Specify the label of the pose that is Warrior II pose.
-                    return 'Warrior II Pose' ;
+    if ((150 < leftElbowAngle && leftElbowAngle < 200) && (150 < rightElbowAngle && rightElbowAngle < 200)){
+        if ((80 < leftShoulderAngle && leftShoulderAngle < 110) && (80 < rightShoulderAngle && rightShoulderAngle < 110)) {
+            // Check if warrior 2 pose 
+            // CHECK IF LEGS R STRAIGHT
+            if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
+                // Check if the other leg is bended at the required angle.
+                if ((leftKneeAngle > 90 && leftKneeAngle < 120) || (rightKneeAngle > 90 && rightKneeAngle < 120)){
+                        // Specify the label of the pose that is Warrior II pose.
+                        return 'Warrior II Pose';
+                }
             }
+<<<<<<< HEAD
         }
                 
     }
@@ -165,6 +170,14 @@ const classifyPose = (pose: any) => {
 // output_image, landmarks = detectPose(image, pose, display=False)
 // if landmarks:
 //     classifyPose(landmarks, output_image, display=True) 
+=======
+>>>>>>> 69d3e948b28ad996fb9862e168f188efcc2b6bad
 
+            // Check if T pose
+            if ((160 < leftKneeAngle && leftKneeAngle < 195) && (160 < rightKneeAngle && rightKneeAngle < 195)) {
+                return 'T Pose';
+            }
+        }                
+    }
 
 export {classifyPose, calculateAngle};
