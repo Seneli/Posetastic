@@ -51,6 +51,8 @@ const PageBody = styled.div`
 const CenterDiv = styled.div<{ background: string; border: string }>`
     width: 80%;
     height: 80%;
+    max-width: 860px;
+    max-height: 700px;
     border-radius: 50px;
     filter: drop-shadow(5px 5px 2px ${(props) => props.theme.colors.dropShadow});
     background-color: ${props => props.background};

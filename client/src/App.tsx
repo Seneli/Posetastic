@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Theme from './Theme';
 import {
   Home,
+  TrainInstructions,
   Train,
   About
 } from './pages';
@@ -15,6 +16,7 @@ const App = () => (
       <PageWrapper>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path="/instructions" element={<TrainInstructions />} />
           <Route path='/train' element={<Train />} />
           <Route path='/about' element={<About />} />
         </Routes>
