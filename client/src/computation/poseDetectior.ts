@@ -20,49 +20,77 @@ const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
     return angle;
 }
 
-const classifyPose = (landmarks: any, output_image: any, display: any) => {
 
-}
+/**
+ * 
+ * @param landmarks: A list of detected landmarks of the person whose pose needs to be classified.
+ * @param output_image: A image of the person with the detected pose landmarks drawn.
+ * @param display: A boolean value that is if set to true the function displays the resultant image with the pose label 
+ *                 written on it and returns nothing. 
+ * @returns {
+*        outputImage: The image with the detected pose landmarks drawn and pose label written.
+*        label: The classified pose label of the person in the output_image.
+*  }
+ */
+const classifyPose = (pose: any) => {
+    // Calculate the required angles 
+    // console.log(pose);
     
-    // # Initialize the label of the pose. It is not known at this stage.
-    // label = 'Unknown Pose'
+    const leftElbowAngle = calculateAngle(pose.leftShoulder, pose.leftElbow, pose.leftWrist);
+    const rightElbowAngle = calculateAngle(pose.rightShoulder, pose.rightElbow, pose.rightWrist);
+    const leftShoulderAngle = calculateAngle(pose.leftElbow, pose.leftShoulder, pose.leftHip);
+    const rightShoulderAngle = calculateAngle(pose.rightHip, pose.rightShoulder, pose.rightElbow);
+    const leftKneeAngle = calculateAngle(pose.leftElbow, pose.leftKnee, pose.leftAnkle);
+    const rightKneeAngle = calculateAngle(pose.rightHip, pose.rightKnee, pose.rightAnkle);
+    
+    console.log(leftElbowAngle);
 
-    // # Specify the color (Red) with which the label will be written on the image.
-    // color = (0, 0, 255)
-    
-    // # Calculate the required angles.
+    if (leftElbowAngle === -1 || rightElbowAngle === -1 || leftShoulderAngle === -1 || rightShoulderAngle === -1){
+        return "Pose Unidentifiable: Make sure we can see your joints!"
+    }
+
+    // Identify the pose
+    // Check if the both arms are straight.
+    if (150 < leftElbowAngle && leftElbowAngle < 200 && 150 < rightElbowAngle && rightElbowAngle < 200){
+        // Check if warrior 2 pose 
+        // CHECK IF LEGS R STRAIGHT
+        if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
+            // Check if the other leg is bended at the required angle.
+            if ((leftKneeAngle > 90 && leftKneeAngle < 120) || (rightKneeAngle > 90 && rightKneeAngle < 120)){
+                    // Specify the label of the pose that is Warrior II pose.
+                    return 'Warrior II Pose' ;
+            }
+        }
+                
+    }
+
+    //     # Check if shoulders are at the required angle.
+    //     if (80 < left_shoulder_angle < 110) and (80 < right_shoulder_angle < 110):
+    //         #--------------------------------------------------------------------------------------------------------
+    //         # Check if it is the warrior II pose.
+    //         #--------------------------------------------------------------------------------------------------------
+    //         # Check if one leg is straight.
+    //         if (150 < left_knee_angle < 200) or (150 < right_knee_angle < 200):
+    //             # Check if the other leg is bended at the required angle.
+    //             if (left_knee_angle > 90 and left_knee_angle < 120) or (right_knee_angle > 90 and right_knee_angle < 120):
+    //                 # Specify the label of the pose that is Warrior II pose.
+    //                 label = 'Warrior II Pose' 
+                        
+    //         #--------------------------------------------------------------------------------------------------------
+    //         # Check if it is the T pose.
+    //         #--------------------------------------------------------------------------------------------------------
+    //         # Check if both legs are straight
+    //         if left_knee_angle > 160 and left_knee_angle < 195 and right_knee_angle > 160 and right_knee_angle < 195:
+    //             label = 'T Pose'
+
     // #----------------------------------------------------------------------------------------------------------------
+    // # Check if it is the tree pose.
+    // #----------------------------------------------------------------------------------------------------------------
+    // # Check if one leg is straight
+    // if ((150 < left_knee_angle < 200) and (25 < right_knee_angle < 90)) or ((150 < right_knee_angle < 200) and (25 < left_knee_angle < 90)):
+    //     label = 'Tree Pose'
     
-    // # Get the angle between the left shoulder, elbow and wrist points. 
-    // left_elbow_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value],
-    //                                   landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value],
-    //                                   landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value])
-    
-    // # Get the angle between the right shoulder, elbow and wrist points. 
-    // right_elbow_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value],
-    //                                    landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value],
-    //                                    landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value])   
-    
-    // # Get the angle between the left elbow, shoulder and hip points. 
-    // left_shoulder_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value],
-    //                                      landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value],
-    //                                      landmarks[mp_pose.PoseLandmark.LEFT_HIP.value])
-
-    // # Get the angle between the right hip, shoulder and elbow points. 
-    // right_shoulder_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value],
-    //                                       landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value],
-    //                                       landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value])
-
-    // # Get the angle between the left hip, knee and ankle points. 
-    // left_knee_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.LEFT_HIP.value],
-    //                                  landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value],
-    //                                  landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value])
-
-    // # Get the angle between the right hip, knee and ankle points 
-    // right_knee_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value],
-    //                                   landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value],
-    //                                   landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value])
-    
+}
     // #----------------------------------------------------------------------------------------------------------------
     // # Check if it is the warrior II pose or the T pose:
     // #   both arms should be straight and shoulders should be at the specific angle.

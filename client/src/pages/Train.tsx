@@ -1,9 +1,10 @@
+import {useState} from "react";
 import styled from 'styled-components';
 import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 import {PageTemplate} from "../components";
 import {ColorScheme} from "../types/enums";
 import ml5 from "ml5";
-import {detectPose, classifyPose, calculateAngle} from "../computation/poseDetectior";
+import {classifyPose, calculateAngle} from "../computation/poseDetectior";
 
 declare const p5: any
 
@@ -26,7 +27,7 @@ function setup(p5:any) {
     // with an array every time new poses are detected
     poseNet.on("pose", function(results: any[]) {
       poses = results;
-      console.log("poses", poses);
+      // console.log("poses", poses);
     });
     // Hide the video element, and just show the canvas
     video.hide();
@@ -40,6 +41,10 @@ function draw(p5:any) {
     // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints(p5);
     drawSkeleton(p5);
+
+    if (poses[0]){
+      classifyPose(poses[0]?.pose);
+    }
   };
 }
 
@@ -81,11 +86,16 @@ function sketch(p5:any) {
   p5.draw = draw(p5);
 }
 
-const Train = () => (
-  <PageTemplate colorScheme={ColorScheme.Pink}>
-    <ReactP5Wrapper sketch={sketch}></ReactP5Wrapper>
-  </PageTemplate>
-);
+const Train = () => {
+  const [pose, setPose] = useState<string>('Unknown Pose')
+
+  return(
+    <PageTemplate colorScheme={ColorScheme.Pink}>
+      <ReactP5Wrapper sketch={sketch}></ReactP5Wrapper>
+      <p>{pose}</p>
+    </PageTemplate>
+  )
+};
 
 
 export default Train;
