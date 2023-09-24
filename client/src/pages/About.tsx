@@ -24,7 +24,7 @@ const About = () => (
 
 
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: 43px;
   margin-bottom: 10px;
   margin-top: 10px;
 `;
@@ -35,15 +35,16 @@ const Section = styled.div`
 `;
 
 const Subheading = styled.h2`
-  font-size: 40px;
-  margin-bottom: 8px;
+  font-size: 30px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 `;
 
 const AboutText = styled.p`
-  font-size: 30px;
-  margin-bottom: 10px;
-  margin-left: 100px;
-  margin-right: 100px;
+  font-size: 28px;
+  margin-bottom: 0px;
+  margin-left: 50px;
+  margin-right: 50px;
 `;
 
 const StarImage = styled.img`
