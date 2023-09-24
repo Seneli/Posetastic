@@ -136,16 +136,16 @@ const Train = () => {
 };
 
 const Title = styled.h1`
-    font-size: 50px;
+    font-size: 65px;
 `;
 
 const Text = styled.p`
-  font-size: 20px;
+  font-size: 30px;
   padding: 20px 80px;
 `;
 
 const Button = styled.button`
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     color: ${(props) => props.theme.colors.technovaBlueDark};
     border: 3px solid ${(props) => props.theme.colors.technovaBlue};
