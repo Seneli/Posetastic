@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import {PageTemplate} from "../components";
 import { useNavigate } from 'react-router-dom';
 import {ColorScheme} from "../types/enums";
-import star from "../assets/star.svg";
+import yoga from "../assets/yoga.svg";
 
 const Home = () => {
     let navigate = useNavigate();
     
     return (
         <PageTemplate colorScheme={ColorScheme.Green}>
-           <img className = "star" src={star} alt="star"></img>
+           <Image src={yoga} alt="yoga"></Image>
             <Title>Welcome to Posetastic!</Title>
             <Text>Click the buttons to learn more!</Text>
             <ButtonFlex>
@@ -19,6 +19,9 @@ const Home = () => {
         </PageTemplate>
     )
 };
+const Image = styled.img`
+    padding-top: 30px`
+;
 
 const Title = styled.h1`
     font-size: 80px;

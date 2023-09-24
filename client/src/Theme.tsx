@@ -12,7 +12,7 @@ const theme = {
     technovaBlue: '#9cb0f0',
     technovaGreen: '#a3ebe0',
 
-    technovaBlueMid: '#becaf2',
+    technovaBlueMid: '#F9E1FF',
 
     technovaPinkLight: '#fbe0e4',
     technovaBlueLight: '#e1f3ff',
