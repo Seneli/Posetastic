@@ -20,10 +20,11 @@ const Home = () => {
 };
 
 const Title = styled.h1`
-    font-size: 50px;
+    font-size: 80px;
 `;
 
 const Text = styled.p`
+    font-size: 30px;
     padding-bottom: 40px;
 `;
 
@@ -35,7 +36,7 @@ const ButtonFlex = styled.div`
 `;
 
 const Button = styled.button`
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     color: ${(props) => props.theme.colors.technovaBlueDark};
     border: 3px solid ${(props) => props.theme.colors.technovaBlue};
