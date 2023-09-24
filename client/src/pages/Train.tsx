@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import styled from 'styled-components';
 import { ReactP5Wrapper } from "react-p5-wrapper";
 import {PageTemplate} from "../components";
@@ -89,6 +89,7 @@ function sketch(p5:any) {
 
 const Train = () => {
   const desiredPoses = ["Stand Straight", "Tree Pose", 'Warrior II'];
+  const poseImages = [ warriorPose,standStraight,treePose, ];
   const [poseNum, setPoseNum] = useState<number>(0);
   const [pose, setPose] = useState<string>('Unknown Pose');
   const [count, setCount] = useState(0);
@@ -103,7 +104,7 @@ const Train = () => {
               const currentPose = classifyPose(poses[0]?.pose);
               if (currentPose === desiredPoses[poseNum]){
                 setCount(count + 1);
-                if (count === 6 && poseNum === desiredPoses.length - 2 ){
+                if (count === 6 && poseNum === desiredPoses.length - 1 ){
                   setDone(true)
                 } else if (count === 6) {
                   setPoseNum(poseNum + 1);
@@ -135,17 +136,43 @@ const Train = () => {
             <Text><b>DESIRED POSE:</b> {desiredPoses[poseNum]}</Text>
             <Text><b>DETECTED POSE:</b> {pose}</Text>
             <Text><b>Timer:</b> {count}</Text>
+
+            <ImageWrapper><PoseImage src={poseImages[poseNum]} alt="yoga"/></ImageWrapper>
         </>
       }
   </PageTemplate>
   )
 };
 
+const ImageWrapper = styled.div`
+
+z-index: 1;
+  display: flex;
+  justify-content: center;
+  height: 425px;
+  width: 200px;
+
+  position: absolute;
+  right: 35px;
+  top: 160px;
+  margin: auto;
+`;
+
+const PoseImage = styled.img`
+  margin: auto;
+  max-width: 280px;
+  max-height: 425px;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+`;
+
 const VideoWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.colors.technovaPinkDark};
   border-radius: 25px;
   overflow: hidden;
   height: 480px;
+  width: 640px;
 `;
 
 const Title = styled.h1`

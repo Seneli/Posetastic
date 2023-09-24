@@ -62,10 +62,10 @@ const classifyPose = (pose: any) => {
                     return 'Warrior II' ;
             }
 
-            // Check if T pose
-            if ((160 < leftKneeAngle && leftKneeAngle < 195) && (160 < rightKneeAngle && rightKneeAngle < 195)) {
-                return 'T Pose';
-            }
+            // // Check if T pose
+            // if ((160 < leftKneeAngle && leftKneeAngle < 195) && (160 < rightKneeAngle && rightKneeAngle < 195)) {
+            //     return 'T Pose';
+            // }
         }                
     }
     

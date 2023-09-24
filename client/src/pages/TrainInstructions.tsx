@@ -44,6 +44,7 @@ const Instruction = styled.div`
     font-size: 30px;
     width: 80%;
     text-align: center;
+    /* border: 1px solid ${(props) => props.theme.colors.technovaPink}; */
     background-color: ${(props) => props.theme.colors.technovaBlueMid};
     filter: drop-shadow(3px 3px 2px ${(props) => props.theme.colors.dropShadow});
     overflow-y: hidden;
