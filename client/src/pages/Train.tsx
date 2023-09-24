@@ -89,7 +89,7 @@ function sketch(p5:any) {
 
 const Train = () => {
   const desiredPoses = ["Stand Straight", "Tree Pose", 'Warrior II'];
-  const poseImages = [ warriorPose,standStraight,treePose, ];
+  const poseImages = [standStraight,treePose, warriorPose];
   const [poseNum, setPoseNum] = useState<number>(0);
   const [pose, setPose] = useState<string>('Unknown Pose');
   const [count, setCount] = useState(0);
@@ -138,7 +138,9 @@ const Train = () => {
             <Text><b>Timer:</b> {count}</Text>
 
             <ImageWrapper><PoseImage src={poseImages[poseNum]} alt="yoga"/></ImageWrapper>
+            <button onClick={()=> setPoseNum(poseNum+1)}>hihi</button>
         </>
+        
       }
   </PageTemplate>
   )
