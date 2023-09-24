@@ -3,6 +3,7 @@ import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 import {PageTemplate} from "../components";
 import {ColorScheme} from "../types/enums";
 import ml5 from "ml5";
+import {detectPose, classifyPose, calculateAngle} from "../computation/poseDetectior";
 
 declare const p5: any
 
