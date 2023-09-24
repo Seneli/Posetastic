@@ -210,7 +210,7 @@ def classifyPose(landmarks, output_image, display=False):
         # Return the output image and the classified label.
         return output_image, label
 
-image = cv2.imread('./test-cases/tree-pose4.jpg')
+image = cv2.imread('./test_images/tree-pose4.jpg')
 output_image, landmarks = detectPose(image, pose, display=False)
 if landmarks:
     classifyPose(landmarks, output_image, display=True) 
