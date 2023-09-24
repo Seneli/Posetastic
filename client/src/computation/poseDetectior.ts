@@ -75,7 +75,7 @@ const classifyPose = (pose: any) => {
     }
 
     if ((150 < leftKneeAngle && leftKneeAngle < 200) || (150 < rightKneeAngle && rightKneeAngle < 200)){
-        return "legs str8";
+        return "Stand Straight";
     }
 
     return 'Unknown Pose';

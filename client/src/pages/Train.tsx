@@ -7,6 +7,10 @@ import ml5 from "ml5";
 import {classifyPose} from "../computation/poseDetectior";
 import { useNavigate } from 'react-router-dom';
 
+import standStraight from "../static/poses/stand_straight.png";
+import treePose from "../static/poses/tree_pose.png";
+import warriorPose from "../static/poses/warrior_pose.png";
+
 declare const p5: any
 
 let video: any;
@@ -84,7 +88,7 @@ function sketch(p5:any) {
 }
 
 const Train = () => {
-  const desiredPoses = ["legs str8", "Tree Pose", 'Warrior II'];
+  const desiredPoses = ["Stand Straight", "Tree Pose", 'Warrior II'];
   const [poseNum, setPoseNum] = useState<number>(0);
   const [pose, setPose] = useState<string>('Unknown Pose');
   const [count, setCount] = useState(0);
