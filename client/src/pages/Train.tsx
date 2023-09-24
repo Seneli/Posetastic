@@ -149,8 +149,9 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  font-size: 30px;
-  padding: 20px 80px;
+  font-size: 20px;
+  margin: 15px;
+  /* padding: 20px 80px; */
 `;
 
 const Button = styled.button`
