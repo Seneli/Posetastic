@@ -13,21 +13,20 @@
 // # Initializing mediapipe drawing class, useful for annotation.
 // mp_drawing = mp.solutions.drawing_utils 
 
-
+/**
+ * 
+ * @param image: The input image with a prominent person whose pose landmarks needs to be detected.
+ * @param pose: The pose setup function required to perform the pose detection. 
+ * @param display: A boolean value that is if set to true the function displays the original input image, the resultant image, 
+ *                 and the pose landmarks in 3D plot and returns nothing. 
+ * @returns {
+ *        outputImage: The input image with the detected pose landmarks drawn.
+ *        landmarks: A list of detected landmarks converted into their original scale
+ *  }
+ */
 const detectPose = (image:any, pose: any, display:boolean=true) => {
 
 }
-    // '''
-    // This function performs pose detection on an image.
-    // Args:
-    //     image: The input image with a prominent person whose pose landmarks needs to be detected.
-    //     pose: The pose setup function required to perform the pose detection.
-    //     display: A boolean value that is if set to true the function displays the original input image, the resultant image, 
-    //              and the pose landmarks in 3D plot and returns nothing.
-    // Returns:
-    //     output_image: The input image with the detected pose landmarks drawn.
-    //     landmarks: A list of detected landmarks converted into their original scale.
-    // '''    
     // # Create a copy of the input image.
     // output_image = image.copy()
     
@@ -70,7 +69,12 @@ const detectPose = (image:any, pose: any, display:boolean=true) => {
     //     # Return the output image and the found landmarks.
     //     return output_image, landmarks
     
-    
+/**
+ * 
+ * @param landmark1 
+ * @param landmark2 
+ * @param landmark3 
+ */
 const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
 
 }
@@ -104,6 +108,12 @@ const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
     // # Return the calculated angle.
     // return angle
 
+/**
+ * 
+ * @param landmarks 
+ * @param output_image 
+ * @param display 
+ */
 const classifyPose = (landmarks: any, output_image: any, display: any) => {
 
 }
