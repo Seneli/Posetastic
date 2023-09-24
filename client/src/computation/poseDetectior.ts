@@ -64,6 +64,13 @@ const classifyPose = (pose: any) => {
                 
     }
 
+    //Check if one leg is straight and one leg is bent (tree pose)
+    if (((150 < leftKneeAngle && leftKneeAngle < 200) && (25 < rightKneeAngle && rightKneeAngle < 90)) || ((150 < rightKneeAngle && rightKneeAngle < 200) && (25 < leftKneeAngle && leftKneeAngle < 90))){
+        return 'Tree Pose';               
+    }
+
+    return 'Unknown Pose';
+
     //     # Check if shoulders are at the required angle.
     //     if (80 < left_shoulder_angle < 110) and (80 < right_shoulder_angle < 110):
     //         #--------------------------------------------------------------------------------------------------------
