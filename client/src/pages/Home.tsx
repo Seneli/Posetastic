@@ -11,9 +11,9 @@ const Home = () => {
         <PageTemplate colorScheme={ColorScheme.Green}>
            <img className = "star" src={star} alt="star"></img>
             <Title>Welcome to Posetastic!</Title>
-            <Text>Click the following buttons to learn more</Text>
+            <Text>Click the buttons to learn more!</Text>
             <ButtonFlex>
-                <Button onClick={() => navigate('/instructions')}>Train with us!</Button>
+                <Button onClick={() => navigate('/instructions')}>Start</Button>
                 <Button onClick={() => navigate('/about')}>About us</Button>
             </ButtonFlex>
         </PageTemplate>
@@ -21,12 +21,14 @@ const Home = () => {
 };
 
 const Title = styled.h1`
-    font-size: 70px;
+    font-size: 80px;
+    font-family: 'Urbanist', sans-serif;
 `;
 
 const Text = styled.p`
-    font-size: 30px;
     padding-bottom: 40px;
+    font-size: 35px;
+    font-family: 'Quicksand', sans-serif;
 `;
 
 const ButtonFlex = styled.div`
@@ -37,7 +39,8 @@ const ButtonFlex = styled.div`
 `;
 
 const Button = styled.button`
-    font-size: 30px;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     color: ${(props) => props.theme.colors.technovaBlueDark};
     border: 3px solid ${(props) => props.theme.colors.technovaBlue};
@@ -51,5 +54,7 @@ const Button = styled.button`
         filter: drop-shadow(3px 3px 2px ${(props) => props.theme.colors.dropShadow});
     }
 `;
+
+
 
 export default Home;

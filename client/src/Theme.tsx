@@ -47,7 +47,10 @@ const theme = {
 };
 
 const Theme = ({ children }: any) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  <><ThemeProvider theme={theme}>{children}</ThemeProvider>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@600&family=Karla:wght@700&family=Kumbh+Sans:wght@300&family=Pangolin&family=Quicksand&family=Urbanist:wght@700&display=swap" rel="stylesheet"/></>
 );
 
 export default Theme;

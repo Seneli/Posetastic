@@ -30,6 +30,7 @@ const TrainInstructions = () => {
 const Instructions = styled.div`
     display: flex;
     flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
     gap: 30px;
     /* height: 80%; */
     align-items: center;
@@ -38,6 +39,7 @@ const Instructions = styled.div`
 
 const Instruction = styled.div`
     padding: 30px;
+    font-family: 'Quicksand', sans-serif;
     border-radius: 20px;
     font-size: 30px;
     width: 80%;
@@ -50,6 +52,7 @@ const Instruction = styled.div`
 const Button = styled.button`
     font-size: 20px;
     font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
     color: ${(props) => props.theme.colors.technovaPinkDark};
     border: 3px solid ${(props) => props.theme.colors.technovaPink};
     border-radius: 25px;
