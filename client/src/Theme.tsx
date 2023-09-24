@@ -12,11 +12,14 @@ const theme = {
     technovaBlue: '#9cb0f0',
     technovaGreen: '#a3ebe0',
 
+    technovaBlueMid: '#becaf2',
+
     technovaPinkLight: '#fbe0e4',
     technovaBlueLight: '#e1f3ff',
     technovaGreenLight: '#d6f5f0',
 
-    technovaBlueDark: "#6883d9"
+    technovaBlueDark: "#6883d9",
+    technovaPinkDark: '#bd4255',
   },
   fonts: {
     heading: 'Poppins, sans-serif',

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {PageTemplate} from "../components";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import {ColorScheme} from "../types/enums";
 import star from "../assets/star.svg";
 
@@ -13,7 +13,7 @@ const Home = () => {
             <Title>Welcome to Posetastic!</Title>
             <Text>Click the following buttons to learn more</Text>
             <ButtonFlex>
-                <Button onClick={() => navigate('/train')}>Train with us!</Button>
+                <Button onClick={() => navigate('/instructions')}>Train with us!</Button>
                 <Button onClick={() => navigate('/about')}>About us</Button>
             </ButtonFlex>
         </PageTemplate>

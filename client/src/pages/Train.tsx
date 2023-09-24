@@ -39,8 +39,8 @@ function draw(p5:any) {
     p5.image(video, 0, 0, 640, 480);
 
     // We can call both functions to draw all keypoints and the skeletons
-    drawKeypoints(p5);
     drawSkeleton(p5);
+    drawKeypoints(p5);
   };
 }
 
@@ -55,7 +55,7 @@ function drawKeypoints(p5:any) {
       const keypoint = pose.keypoints[j];
       // Only draw an ellipse is the pose probability is bigger than 0.2
       if (keypoint.score > 0.2) {
-        p5.fill(255, 0, 0);
+        p5.fill(189, 66, 85);
         p5.noStroke();
         p5.ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
       }
@@ -71,8 +71,9 @@ function drawSkeleton(p5:any) {
     for (let j = 0; j < skeleton.length; j += 1) {
       const partA = skeleton[j][0];
       const partB = skeleton[j][1];
-      p5.stroke(255, 0, 0);
+      p5.stroke(243, 120, 138);
       p5.line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
+      p5.strokeWeight(3);
     }
   }
 }
@@ -87,7 +88,7 @@ const Train = () => {
   const [poseNum, setPoseNum] = useState<number>(0);
   const [pose, setPose] = useState<string>('Unknown Pose');
   const [count, setCount] = useState(0);
-  const [done, setDone] = useState<boolean>(true);
+  const [done, setDone] = useState<boolean>(false);
 
   let navigate = useNavigate();
   
@@ -125,15 +126,23 @@ const Train = () => {
         </>
       : 
         <>
-          <ReactP5Wrapper sketch={sketch}></ReactP5Wrapper>
+            <VideoWrapper><ReactP5Wrapper sketch={sketch}></ReactP5Wrapper></VideoWrapper>
+            
             <Text><b>DESIRED POSE:</b> {desiredPoses[poseNum]}</Text>
             <Text><b>DETECTED POSE:</b> {pose}</Text>
-            <Text><b>Counter:</b> {count}</Text>
+            <Text><b>Timer:</b> {count}</Text>
         </>
       }
   </PageTemplate>
   )
 };
+
+const VideoWrapper = styled.div`
+  border: 2px solid ${(props) => props.theme.colors.technovaPinkDark};
+  border-radius: 25px;
+  overflow: hidden;
+  height: 480px;
+`;
 
 const Title = styled.h1`
     font-size: 65px;
