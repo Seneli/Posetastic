@@ -71,23 +71,14 @@ const detectPose = (image:any, pose: any, display:boolean=true) => {
     
 /**
  * 
- * @param landmark1 
- * @param landmark2 
- * @param landmark3 
+ * @param landmark1: The first landmark containing the x,y and z coordinates.
+ * @param landmark2: The second landmark containing the x,y and z coordinates.
+ * @param landmark3: The third landmark containing the x,y and z coordinates.
+ * @returns angle: The calculated angle between the three landmarks.
  */
 const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
 
 }
-    // '''
-    // This function calculates angle between three different landmarks.
-    // Args:
-    //     landmark1: The first landmark containing the x,y and z coordinates.
-    //     landmark2: The second landmark containing the x,y and z coordinates.
-    //     landmark3: The third landmark containing the x,y and z coordinates.
-    // Returns:
-    //     angle: The calculated angle between the three landmarks.
-
-    // '''
 
     // # Get the required landmarks coordinates.
     // x1, y1, _ = landmark1
@@ -110,25 +101,18 @@ const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
 
 /**
  * 
- * @param landmarks 
- * @param output_image 
- * @param display 
+ * @param landmarks: A list of detected landmarks of the person whose pose needs to be classified.
+ * @param output_image: A image of the person with the detected pose landmarks drawn.
+ * @param display: A boolean value that is if set to true the function displays the resultant image with the pose label 
+ *                 written on it and returns nothing. 
+ * @returns {
+*        outputImage: The image with the detected pose landmarks drawn and pose label written.
+*        label: The classified pose label of the person in the output_image.
+*  }
  */
 const classifyPose = (landmarks: any, output_image: any, display: any) => {
 
 }
-    // '''
-    // This function classifies yoga poses depending upon the angles of various body joints.
-    // Args:
-    //     landmarks: A list of detected landmarks of the person whose pose needs to be classified.
-    //     output_image: A image of the person with the detected pose landmarks drawn.
-    //     display: A boolean value that is if set to true the function displays the resultant image with the pose label 
-    //     written on it and returns nothing.
-    // Returns:
-    //     output_image: The image with the detected pose landmarks drawn and pose label written.
-    //     label: The classified pose label of the person in the output_image.
-
-    // '''
     
     // # Initialize the label of the pose. It is not known at this stage.
     // label = 'Unknown Pose'
