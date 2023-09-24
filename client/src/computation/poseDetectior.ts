@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param landmark1 The first landmark containing the x,y coordinates, and confidence score
+ * @param landmark2 The second landmark containing the x,y coordinates, and confidence score
+ * @param landmark3 The third landmark containing the x,y coordinates, and confidence score
+ * @returns The calculated angle between the three landmarks.
+ */
 const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
     if (landmark1.confidence < 0.2 || landmark2.confidence < 0.2 || landmark3.confidence < 0.2) {
         return -1;
@@ -23,15 +30,9 @@ const calculateAngle = (landmark1: any, landmark2: any, landmark3: any) => {
 
 /**
  * 
- * @param landmarks: A list of detected landmarks of the person whose pose needs to be classified.
- * @param output_image: A image of the person with the detected pose landmarks drawn.
- * @param display: A boolean value that is if set to true the function displays the resultant image with the pose label 
- *                 written on it and returns nothing. 
- * @returns {
-*        outputImage: The image with the detected pose landmarks drawn and pose label written.
-*        label: The classified pose label of the person in the output_image.
-*  }
- */
+ * @param pose 
+ * @returns The classified pose label of the person in the output_image.
+*/
 
 const classifyPose = (pose: any) => {
     // Calculate the required angles 
